@@ -1,25 +1,56 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+const emoji=[
+  {a:'☺️',name:'smile'},
+  {a:'😂',name:'funny'},
+  {a:'🥹',name:'emotional'},
+  {a:'😇',name:'elated'},
+  {a:'🧐',name:'doubt'},
+  {a:'😏',name:'smirk'}
+]
+
 function App() {
+  const [first,setFirst]=useState('');
+  const [second,setSecond]=useState([]);
+
+  function show(e){
+    setFirst(e.target.value);
+  }
+  const search=second.filter((k)=>{
+    return k.name.toLowerCase().includes(first.toLowerCase());
+  })
+  function newf(){
+    setSecond(emoji);
+  }
+  function pqr(){
+    setSecond([]);
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <div class='abc'>
+  <input className='inputsize' placeholder='search' type='text' onClick={newf} onChange={show}></input>
+  <input  type='button' value='*' onClick={pqr} />
+  
+    {/* <button onClick={pqr}>*</button> */}
+    
+   
+   
+    {search.map((element,index)=>(
+     <span style={{fontSize:'30px'}}>{element.a}</span>
+   
+      
+     
+      
+  ))}
+  </div>
+  
+
+  
+  </>
   );
 }
+
 
 export default App;
